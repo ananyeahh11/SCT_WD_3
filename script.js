@@ -1,11 +1,12 @@
-
 let board = Array(9).fill("");
 let gameActive = false;
 let mode = "pvp";
 let currentPlayer = "X";
 
+let playerScore = 0;
+let cpuScore = 0;
+
 const statusText = document.getElementById("status");
-const boardDiv = document.getElementById("board");
 
 const winConditions = [
   [0,1,2],[3,4,5],[6,7,8],
@@ -13,7 +14,7 @@ const winConditions = [
   [0,4,8],[2,4,6]
 ];
 
-/* ---------------- START GAME ---------------- */
+/* ---------------- START ---------------- */
 
 function startGame(selectedMode) {
   mode = selectedMode;
@@ -22,6 +23,7 @@ function startGame(selectedMode) {
   document.getElementById("gameScreen").classList.remove("hidden");
 
   resetGame();
+  updateLabels();
 }
 
 /* ---------------- MENU ---------------- */
@@ -44,15 +46,13 @@ function resetGame() {
 /* ---------------- BOARD ---------------- */
 
 function createBoard() {
+  const boardDiv = document.getElementById("board");
   boardDiv.innerHTML = "";
 
   board.forEach((cell, i) => {
     const div = document.createElement("div");
     div.classList.add("cell");
     div.innerText = cell;
-
-    if (cell !== "") div.classList.add("pop");
-
     div.onclick = () => handleClick(i);
     boardDiv.appendChild(div);
   });
@@ -77,7 +77,7 @@ function handleClick(i) {
   }
 }
 
-/* ---------------- CPU (IMPOSSIBLE AI) ---------------- */
+/* ---------------- CPU (MINIMAX) ---------------- */
 
 function cpuMove() {
   let move = bestMove();
@@ -91,7 +91,7 @@ function cpuMove() {
   statusText.innerText = "Your Turn (X)";
 }
 
-/* ---------------- MINIMAX (UNBEATABLE) ---------------- */
+/* ---------------- BEST MOVE ---------------- */
 
 function bestMove() {
   let best = -Infinity;
@@ -141,7 +141,7 @@ function minimax(b, depth, isMax) {
   }
 }
 
-/* ---------------- WIN CHECK ---------------- */
+/* ---------------- WIN ---------------- */
 
 function winner(p) {
   return winConditions.some(([a,b,c]) =>
@@ -149,7 +149,7 @@ function winner(p) {
   );
 }
 
-/* ---------------- CHECK WIN ---------------- */
+/* ---------------- CHECK WIN + DRAW ---------------- */
 
 function checkWin() {
 
@@ -160,36 +160,54 @@ function checkWin() {
 
       highlight(c);
 
+      if (mode === "cpu") {
+        if (board[a] === "X") playerScore++;
+        else cpuScore++;
+      } else {
+        if (board[a] === "X") playerScore++;
+        else cpuScore++;
+      }
+
       statusText.innerText = board[a] + " Wins 🎉";
 
+      updateScore();
       gameActive = false;
 
-      // 🏆 CONFETTI
       confetti({
         particleCount: 120,
         spread: 80,
         origin: { y: 0.6 }
       });
 
-      // SCREEN FLASH
-      document.body.classList.add("flash");
-      setTimeout(() => document.body.classList.remove("flash"), 400);
-
       return true;
     }
   }
 
   if (!board.includes("")) {
-    statusText.innerText = "Draw!";
+    statusText.innerText = "It's a Draw 🤝";
     gameActive = false;
+    return true;
   }
 
   return false;
 }
 
-/* ---------------- HIGHLIGHT ---------------- */
+/* ---------------- UI ---------------- */
 
 function highlight(line) {
   const cells = document.querySelectorAll(".cell");
   line.forEach(i => cells[i].classList.add("win"));
+}
+
+function updateScore() {
+  document.getElementById("pScore").innerText = playerScore;
+  document.getElementById("cScore").innerText = cpuScore;
+}
+
+function updateLabels() {
+  document.getElementById("pLabel").innerText =
+    mode === "cpu" ? "You" : "Player 1";
+
+  document.getElementById("cLabel").innerText =
+    mode === "cpu" ? "Computer" : "Player 2";
 }

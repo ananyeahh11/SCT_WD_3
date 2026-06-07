@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tic Tac Toe Pro</title>
+  <title>Tic Tac Toe</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <!-- START SCREEN -->
 <div id="startScreen" class="screen">
-  <h1 class="title">Tic Tac Toe</h1>
+  <h1>Tic Tac Toe</h1>
   <p>Choose Mode</p>
 
   <button onclick="startGame('pvp')">Player vs Player</button>
-  <button onclick="startGame('cpu')">Impossible AI</button>
+  <button onclick="startGame('cpu')">Player vs Computer</button>
 </div>
 
 <!-- GAME SCREEN -->
@@ -22,19 +22,27 @@
 
   <h1>Tic Tac Toe</h1>
 
-  <div class="controls">
-    <button onclick="resetGame()">Restart</button>
-    <button onclick="goMenu()">Menu</button>
+  <div class="scoreboard">
+    <div id="pLabel">Player 1</div>
+    <div>
+      <span id="pScore">0</span> - <span id="cScore">0</span>
+    </div>
+    <div id="cLabel">Player 2</div>
   </div>
 
   <h2 id="status">Turn: X</h2>
 
   <div id="board" class="board"></div>
+
+  <div class="controls">
+    <button onclick="resetGame()">Restart</button>
+    <button onclick="goMenu()">Menu</button>
+  </div>
+
 </div>
 
-<!-- CONFETTI -->
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
 <script src="script.js"></script>
+
 </body>
 </html>
