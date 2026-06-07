@@ -66,17 +66,6 @@ tic-tac-toe-app/
 
 ---
 
-## 📸 Screenshots
-
-> (Add screenshots here for better presentation)
-
-Example:
-- Start Screen
-- Game Board
-- Winning State
-
----
-
 ## 🔥 Future Improvements
 
 - Online multiplayer (WebSocket)
