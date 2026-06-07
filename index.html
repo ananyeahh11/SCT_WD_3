@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tic Tac Toe Pro</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- START SCREEN -->
+<div id="startScreen" class="screen">
+  <h1 class="title">Tic Tac Toe</h1>
+  <p>Choose Mode</p>
+
+  <button onclick="startGame('pvp')">Player vs Player</button>
+  <button onclick="startGame('cpu')">Impossible AI</button>
+</div>
+
+<!-- GAME SCREEN -->
+<div id="gameScreen" class="hidden">
+
+  <h1>Tic Tac Toe</h1>
+
+  <div class="controls">
+    <button onclick="resetGame()">Restart</button>
+    <button onclick="goMenu()">Menu</button>
+  </div>
+
+  <h2 id="status">Turn: X</h2>
+
+  <div id="board" class="board"></div>
+</div>
+
+<!-- CONFETTI -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<script src="script.js"></script>
+</body>
+</html>

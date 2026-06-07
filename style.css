@@ -1,0 +1,107 @@
+body {
+  margin: 0;
+  font-family: Arial;
+  background: radial-gradient(circle at top, #0b1220, #020617);
+  color: white;
+  text-align: center;
+}
+
+/* SCREEN TRANSITION */
+.screen {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  animation: fadeIn 0.6s ease;
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* TITLE */
+h1 {
+  color: #38bdf8;
+  letter-spacing: 2px;
+}
+
+/* BUTTONS */
+button {
+  background: #0f172a;
+  border: 1px solid #334155;
+  color: white;
+  padding: 10px 16px;
+  margin: 6px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  border-color: #38bdf8;
+}
+
+/* BOARD */
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 110px);
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+  animation: fadeIn 0.4s ease;
+}
+
+/* CELL */
+.cell {
+  width: 110px;
+  height: 110px;
+  background: rgba(15,23,42,0.85);
+  border: 1px solid #334155;
+  border-radius: 14px;
+  font-size: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.15s;
+}
+
+/* POP */
+.cell.pop {
+  animation: pop 0.2s ease;
+}
+
+@keyframes pop {
+  from { transform: scale(0.2); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* WIN CELLS */
+.win {
+  background: rgba(34,197,94,0.3);
+  box-shadow: 0 0 20px rgba(34,197,94,0.6);
+  animation: glow 0.6s infinite alternate;
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 10px rgba(34,197,94,0.3); }
+  to { box-shadow: 0 0 25px rgba(34,197,94,0.8); }
+}
+
+/* SCREEN FLASH */
+.flash {
+  animation: flash 0.4s ease;
+}
+
+@keyframes flash {
+  0% { background: white; }
+  100% { background: radial-gradient(circle at top, #0b1220, #020617); }
+}
