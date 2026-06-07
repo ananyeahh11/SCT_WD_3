@@ -7,7 +7,7 @@ This project includes both **Player vs Player** and **Player vs Computer (AI)** 
 
 ## 🚀 Live Demo
 If hosted via GitHub Pages:  
-👉 https://YOUR_USERNAME.github.io/SCT_WD_3/
+👉 https://ananyeahh11.github.io/SCT_WD_3/
 
 ---
 
